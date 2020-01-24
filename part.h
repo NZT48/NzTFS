@@ -1,4 +1,4 @@
-typedef unsigned long ClusterNo;
+utypedef unsigned long ClusterNo;
 const unsigned long ClusterSize = 2048;
 
 class Partition {
