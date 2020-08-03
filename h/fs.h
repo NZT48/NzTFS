@@ -1,3 +1,5 @@
+#pragma once
+
 typedef long FileCnt;
 typedef unsigned long BytesCnt;
 
@@ -6,7 +8,7 @@ const unsigned int FEXTLEN = 3;
 
 class KernelFS;
 class Partition;
-clas File;
+class File;
 
 class FS {
 public:
@@ -28,6 +30,7 @@ public:
     static char doesExist(char* fname); // argument je naziv fajla sa apsolutnom putanjom
 
     static File* open(char* fname, char mode);
+    
     static char deleteFile(char* fname);
 
 protected:

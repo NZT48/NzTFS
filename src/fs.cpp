@@ -1,7 +1,6 @@
 #include "fs.h"
 #include "kernelfs.h"
 
-// Check this
 KernelFS *FS::myImpl = new KernelFS();
 
 FS::~FS(){
@@ -24,7 +23,7 @@ FileCnt FS::readRootDir(){
     return myImpl->readRootDir();
 }
 
-FS::doesExist(char* fname){
+char FS::doesExist(char* fname){
     return myImpl->doesExist(fname);
 }
 

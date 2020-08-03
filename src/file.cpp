@@ -1,5 +1,9 @@
 #include "file.h"
+#include "fs.h"
 #include "kernelfile.h"
+
+File::File() {
+}
 
 File::~File(){
     delete myImpl;

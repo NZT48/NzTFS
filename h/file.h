@@ -1,3 +1,6 @@
+#pragma once
+
+#include "fs.h"
 
 class KernelFile;
 
