@@ -173,6 +173,8 @@ char KernelFile::truncate(){
 	unsigned long nextTwo;
 	unsigned long nextOne;
 	unsigned long adr, iTwo = indexTwo;
+	unsigned long zero = 0;
+
 
 	// Brisanje vrednosti iz tekuceg klastera
 	for (unsigned long i = position % 2048; i < 2048; i++) {
@@ -189,13 +191,13 @@ char KernelFile::truncate(){
 			partition->writeCluster(iTwo, cluster);
 			fs->bitVector->releaseCluster(iTwo);
 			memcpy(&iTwo, &buffOne[nextOne * 4], sizeof(unsigned long));
-			memcpy(&buffOne[nextOne * 4], 0, sizeof(unsigned long));
+			memcpy(&buffOne[nextOne * 4], &zero, sizeof(unsigned long));
 			partition->readCluster(iTwo, buffTwo);
 		}
 
 		memcpy(&adr, &buffTwo[nextTwo * 4], sizeof(unsigned long));
 		fs->bitVector->releaseCluster(adr);
-		memcpy(&buffTwo[nextTwo * 4], 0,  sizeof(unsigned long));
+		memcpy(&buffTwo[nextTwo * 4], &zero,  sizeof(unsigned long));
 		partition->writeCluster(adr, cluster);
 	}
 	

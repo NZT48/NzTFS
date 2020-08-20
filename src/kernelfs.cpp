@@ -143,6 +143,7 @@ char KernelFS::deleteFile(char* fname){
 	unsigned long nextTwo;
 	unsigned long nextOne;
 	unsigned long adr, iTwo = 0;
+	unsigned long zero = 0;
 
 	// Brisanje svih narednih klastera
 	for (unsigned long i =0; i < size; i += 2048) {
@@ -154,13 +155,13 @@ char KernelFS::deleteFile(char* fname){
 			partition->writeCluster(iTwo, cluster);
 			bitVector->releaseCluster(iTwo);
 			memcpy(&iTwo, &buffOne[nextOne * 4], sizeof(unsigned long));
-			memcpy(&buffOne[nextOne * 4], 0, sizeof(unsigned long));
+			memcpy(&buffOne[nextOne * 4], &zero, sizeof(unsigned long));
 			partition->readCluster(iTwo, buffTwo);
 		}
 
 		memcpy(&adr, &buffTwo[nextTwo * 4], sizeof(unsigned long));
 		bitVector->releaseCluster(adr);
-		memcpy(&buffTwo[nextTwo * 4], 0, sizeof(unsigned long));
+		memcpy(&buffTwo[nextTwo * 4], &zero, sizeof(unsigned long));
 		partition->writeCluster(adr, cluster);
 	}
 

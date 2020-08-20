@@ -143,6 +143,7 @@ char RootDir::deleteEntry(char* fname) {
 		ret = strncmp(itd->fname, name, 8);
 		if (ret == 0) {
 			dir.erase(itd);
+			numOfEntries--;
 			return 1;
 		}
 	}
